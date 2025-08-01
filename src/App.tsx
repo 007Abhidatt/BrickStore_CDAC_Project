@@ -7,48 +7,11 @@ import { ProtectedRoute } from './components/Layout/ProtectedRoute';
 
 // Pages
 import { LandingPage } from './pages/LandingPage';
-import { LoginPage } from './pages/auth/LoginPage';
-import { RegisterPage } from './pages/auth/RegisterPage';
-import { UserDashboard } from './pages/user/UserDashboard';
-import { ConstructionForm } from './pages/user/ConstructionForm';
-import { EmployeeDashboard } from './pages/employee/EmployeeDashboard';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 
-function DashboardRedirect() {
-  const { user } = useAuth();
   
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
 
-  switch (user.role) {
-    case 'USER':
-      return <Navigate to="/user/dashboard" replace />;
-    case 'EMPLOYEE':
-      return <Navigate to="/employee/dashboard" replace />;
-    case 'ADMIN':
-      return <Navigate to="/admin/dashboard" replace />;
-    default:
-      return <Navigate to="/login" replace />;
-  }
-}
 
-function UnauthorizedPage() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">403</h1>
-        <p className="text-xl text-gray-600 mb-8">You don't have permission to access this page.</p>
-        <button 
-          onClick={() => window.history.back()}
-          className="bg-orange-600 hover:bg-orange-700 text-white px-6 py-3 rounded-md font-medium"
-        >
-          Go Back
-        </button>
-      </div>
-    </div>
-  );
-}
 
 function AppContent() {
   return (
@@ -64,66 +27,7 @@ function AppContent() {
         {/* Dashboard Redirect */}
         <Route path="/dashboard" element={<DashboardRedirect />} />
         
-        {/* User Routes */}
-        <Route 
-          path="/user/dashboard" 
-          element={
-            <ProtectedRoute allowedRoles={['USER']}>
-              <UserDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/user/form" 
-          element={
-            <ProtectedRoute allowedRoles={['USER']}>
-              <ConstructionForm />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/user/appointments" 
-          element={
-            <ProtectedRoute allowedRoles={['USER']}>
-              <UserDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/user/orders" 
-          element={
-            <ProtectedRoute allowedRoles={['USER']}>
-              <UserDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        
-        {/* Employee Routes */}
-        <Route 
-          path="/employee/dashboard" 
-          element={
-            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
-              <EmployeeDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employee/appointments" 
-          element={
-            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
-              <EmployeeDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employee/deliveries" 
-          element={
-            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
-              <EmployeeDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        
+     
         {/* Admin Routes */}
         <Route 
           path="/admin/dashboard" 
