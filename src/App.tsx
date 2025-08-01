@@ -4,16 +4,16 @@ import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { Navbar } from './components/Layout/Navbar';
 import { ProtectedRoute } from './components/Layout/ProtectedRoute';
-// Pages (add these imports)
-import { LoginPage } from './pages/LoginPage';
-import { RegisterPage } from './pages/RegisterPage';
-import { EmployeeDashboard } from './pages/employee/EmployeeDashboard';
 
 // Pages
 import { LandingPage } from './pages/LandingPage';
+import { LoginPage } from './pages/auth/LoginPage';
+import { RegisterPage } from './pages/auth/RegisterPage';
+import { UserDashboard } from './pages/user/UserDashboard';
+import { ConstructionForm } from './pages/user/ConstructionForm';
+import { EmployeeDashboard } from './pages/employee/EmployeeDashboard';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 
-  
 function DashboardRedirect() {
   const { user } = useAuth();
   
@@ -32,6 +32,7 @@ function DashboardRedirect() {
       return <Navigate to="/login" replace />;
   }
 }
+
 function UnauthorizedPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -63,7 +64,66 @@ function AppContent() {
         {/* Dashboard Redirect */}
         <Route path="/dashboard" element={<DashboardRedirect />} />
         
-     
+        {/* User Routes */}
+        <Route 
+          path="/user/dashboard" 
+          element={
+            <ProtectedRoute allowedRoles={['USER']}>
+              <UserDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/user/form" 
+          element={
+            <ProtectedRoute allowedRoles={['USER']}>
+              <ConstructionForm />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/user/appointments" 
+          element={
+            <ProtectedRoute allowedRoles={['USER']}>
+              <UserDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/user/orders" 
+          element={
+            <ProtectedRoute allowedRoles={['USER']}>
+              <UserDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
+        {/* Employee Routes */}
+        <Route 
+          path="/employee/dashboard" 
+          element={
+            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
+              <EmployeeDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/employee/appointments" 
+          element={
+            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
+              <EmployeeDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/employee/deliveries" 
+          element={
+            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
+              <EmployeeDashboard />
+            </ProtectedRoute>
+          } 
+        />
+        
         {/* Admin Routes */}
         <Route 
           path="/admin/dashboard" 
@@ -97,32 +157,7 @@ function AppContent() {
             </ProtectedRoute>
           } 
         />
-         {/* Employee Routes */}
-        <Route 
-          path="/employee/dashboard" 
-          element={
-            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
-              <EmployeeDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employee/appointments" 
-          element={
-            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
-              <EmployeeDashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/employee/deliveries" 
-          element={
-            <ProtectedRoute allowedRoles={['EMPLOYEE']}>
-              <EmployeeDashboard />
-            </ProtectedRoute>
-          } 
-        />
-
+        
         {/* Catch all route */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
