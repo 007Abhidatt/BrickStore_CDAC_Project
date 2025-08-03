@@ -1,0 +1,96 @@
+/* body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f7fa;
+  }
+  
+  .card {
+    border-radius: 12px;
+    border: none;
+  }
+  
+  label {
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  textarea::placeholder {
+    color: #aaa;
+  }
+  
+  textarea:focus {
+    outline: none;
+    border-color: #f3d70b;
+    box-shadow: 0 0 5px #faf2b9ff;
+  }
+  
+  button {
+    background-color: #f3d70b;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #f9f0abff;
+  }
+   */
+
+   /* Container padding & spacing */
+.container {
+  max-width: 500px;
+  margin-top: 60px;
+}
+
+/* Card styling */
+.card {
+  border-radius: 16px;
+  border: none;
+  background-color: #ffffff;
+}
+
+/* Headings */
+.card h2 {
+  font-weight: 700;
+  font-size: 28px;
+  color: #f3d70b;
+}
+
+/* Labels */
+.form-label {
+  font-weight: 600;
+  color: #333;
+}
+
+/* Input fields */
+.form-control, .form-select {
+  border-radius: 8px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  transition: border-color 0.3s;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #f3d70b;
+  box-shadow: 0 0 0 0.2rem #f5f0cbff;
+}
+
+/* Button */
+button[type="submit"] {
+  background-color: #f3d70b;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #f3d70b;
+}
+
+/* Toast adjustments (optional, to better position or style ToastContainer) */
+.Toastify__toast {
+  border-radius: 8px;
+  font-weight: 500;
+}
